@@ -1,0 +1,27 @@
+site_url: https://rdma-rust.github.io
+repo_url: https://github.com/RDMA-Rust/rdma-rust.github.io
+
+site_name: RDMA-Rust
+
+theme:
+  name: material
+  custom_dir: overrides
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+plugins:
+  - blog
+  - search
+  - git-committers:
+      repository: RDMA-Rust/rdma-rust.github.io
+      branch: main
+
+nav:
+  - Home: index.md
+  - Blog:
+    - blog/index.md
