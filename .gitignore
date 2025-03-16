@@ -1,0 +1,5 @@
+# Python venv
+venv/
+
+# plugin cache
+.cache/

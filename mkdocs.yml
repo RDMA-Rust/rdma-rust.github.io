@@ -14,7 +14,22 @@ theme:
     - search.highlight
     - toc.follow
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.blocks.caption
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - attr_list
+  - md_in_html
+  - pymdownx.tabbed:
+      alternate_style: true
+
 plugins:
+  - d2
   - blog
   - search
   - git-committers:
