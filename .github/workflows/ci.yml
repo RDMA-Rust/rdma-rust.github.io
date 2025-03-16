@@ -26,4 +26,6 @@ jobs:
             mkdocs-material-
       - run: pip install mkdocs-material
       - run: pip install mkdocs-git-committers-plugin-2
+      - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+      - run: pip install mkdocs-d2-plugin
       - run: mkdocs gh-deploy --force
