@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://rdma-rust.github.io/</loc>
+         <lastmod>2025-11-18</lastmod>
+    </url>
+    <url>
+         <loc>https://rdma-rust.github.io/2025/11/16/why-another-rdma-wrapper/</loc>
+         <lastmod>2025-11-18</lastmod>
+    </url>
+    <url>
+         <loc>https://rdma-rust.github.io/archive/2025/</loc>
+         <lastmod>2025-11-18</lastmod>
+    </url>
+    <url>
+         <loc>https://rdma-rust.github.io/category/rdma/</loc>
+         <lastmod>2025-11-18</lastmod>
+    </url>
+    <url>
+         <loc>https://rdma-rust.github.io/category/rust/</loc>
+         <lastmod>2025-11-18</lastmod>
+    </url>
+</urlset>

@@ -1,0 +1,2058 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rdma-rust.github.io/">
+      
+      
+      
+        <link rel="next" href="category/rdma/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>RDMA-Rust</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/mkdocs_d2_plugin.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="RDMA-Rust" class="md-header__button md-logo" aria-label="RDMA-Rust" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RDMA-Rust
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RDMA-Rust/rdma-rust.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="archive/2025/" class="md-tabs__link">
+          
+  
+  
+  Archive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="category/rdma/" class="md-tabs__link">
+          
+  
+  
+  Categories
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="RDMA-Rust" class="md-nav__button md-logo" aria-label="RDMA-Rust" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    RDMA-Rust
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RDMA-Rust/rdma-rust.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+      
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="category/rdma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RDMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="category/rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rust
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://avatars.githubusercontent.com/u/13308034" alt="Luke">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-11-16 00:00:00+00:00">November 16, 2025</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
+              <a href="category/rdma/" class="md-meta__link">RDMA</a>, 
+              <a href="category/rust/" class="md-meta__link">Rust</a></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              19 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="why-another-rdma-wrapper"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/">Why another RDMA wrapper</a></h2>
+<h3 id="tl-dr"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#tl-dr">TL; DR</a></h3>
+<p>If you're writing <em>synchronous</em> RDMA code in Rust and you're tired of:</p>
+<ul>
+<li>Hand-rolling FFI over <code>ibverbs-sys</code> / <code>rdma-core-sys</code></li>
+<li>Fighting lifetimes over simple CQ / QP / MR ownership, and</li>
+<li>Rebuilding <code>rdma-core</code> just to link a tiny binary</li>
+</ul>
+<p>Then <a href="https://github.com/RDMA-Rust/sideway"><strong>sideway</strong></a> gives you:</p>
+<ul>
+<li>Rust-flavored wrappers over modern ibverbs (<code>ibv_wr_*</code>, <code>ibv_start_poll</code>, Extended CQ / QP)</li>
+<li>A <code>dlopen</code> based static library so that you don't vendor rdma-core</li>
+<li>A basic but usable wrapper for <code>librdmacm</code></li>
+</ul>
+<p>Checkout our code at <a href="https://github.com/RDMA-Rust/sideway">https://github.com/RDMA-Rust/sideway</a></p>
+<p>This post is about <em>how</em> we built it, what trade-offs we made, and what we learned on the way.</p>
+<h3 id="what-do-we-get"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#what-do-we-get">What do we get?</a></h3>
+<ol>
+<li>A Rust flavored wrapper for rdma-core (can saturate 400 Gbps RNIC)</li>
+<li>Two bug fixes submitted to the rdma-core upstream</li>
+<li>A "dummy" companion library for C/C++ programmer with <code>libibverbs</code> / <code>librdmacm</code> (rdma-core-mummy)</li>
+<li>A lot of Rust + RDMA programming experience</li>
+</ol>
+<h3 id="whats-wrong-with-current-wrappers"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#whats-wrong-with-current-wrappers">What's wrong with current wrappers?</a></h3>
+<p>Most current <code>libibverbs</code> and <code>librdmacm</code> Rust wrappers focus heavily on fancy language features (100% safe, async-first APIs, etc.), and less on being production-ready. They are great for exploration, and provide a lot of insights for our implementation, but awkward when you try to ship a serious RDMA application.</p>
+<p>When you actually start coding, you often end up:</p>
+<ul>
+<li>Reaching for <code>ibverbs-sys</code> (or another bindgen-generated crate)</li>
+<li>Manually handling error-prone C macros / enum definitions</li>
+<li>Juggling C types and Rust types at the same time</li>
+</ul>
+<p>On top of that, most crates assume you build and link the entire rdma-core project into your binary, or required you've install rdma-core on your compile machine. That pulls in unnecessary dependencies and build complexity.</p>
+<p>We wanted something that:</p>
+<ul>
+<li>Keeps the control path ergonomic in Rust</li>
+<li>Keeps the data path as close as possible to raw <code>ibverbs</code> to achieve high performance</li>
+<li>Doesn't require vendoring rdma-core into every build</li>
+</ul>
+<h4 id="how-does-sideway-compare"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#how-does-sideway-compare">How does sideway compare?</a></h4>
+<p>We are not claiming to replace other crates, different projects have different trade-offs. But for high performance, synchronous RDMA, there are some concrete issues you run into.</p>
+<table>
+<thead>
+<tr>
+<th>Crate</th>
+<th>Requires building rdma-core</th>
+<th>Wrapping librdmacm</th>
+<th>Performance issues</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/jonhoo/rust-ibverbs">ibverbs</a></td>
+<td>Yes</td>
+<td>No</td>
+<td>1. <a href="https://github.com/jonhoo/rust-ibverbs/blob/3c1c57d1c3e1fa2dd00390174ac4bf70605e123f/ibverbs/src/lib.rs#L581">Poll CQ at a constant batching size</a><br>2. <a href="https://github.com/jonhoo/rust-ibverbs/blob/3c1c57d1c3e1fa2dd00390174ac4bf70605e123f/ibverbs/src/lib.rs#L1904">No batching WRs posting operation</a><br>3. <a href="https://github.com/jonhoo/rust-ibverbs/blob/3c1c57d1c3e1fa2dd00390174ac4bf70605e123f/ibverbs/src/lib.rs#L1908">Unable to specify send flags for moderation or fencing</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/IcicleF/rrddmma">rrddmma</a></td>
+<td>Optional</td>
+<td>No</td>
+<td>Leave options to user</td>
+</tr>
+<tr>
+<td><a href="https://github.com/datenlord/async-rdma">async-rdma</a></td>
+<td>No (But specific version required)</td>
+<td>Yes</td>
+<td>1. <a href="https://github.com/datenlord/async-rdma/blob/9480131f671eb97ded1ccfd5bb8d7bdc75be66fa/src/work_request.rs#L37">No batching WRs posting operation</a><br>2. <a href="https://github.com/datenlord/async-rdma/blob/9480131f671eb97ded1ccfd5bb8d7bdc75be66fa/src/work_request.rs#L50">Unable to specify send flags for moderation for fencing</a><br>3. <a href="https://github.com/datenlord/async-rdma/blob/9480131f671eb97ded1ccfd5bb8d7bdc75be66fa/src/lib.rs#L1278">Create a CQ for every QP</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Nugine/rdma">rdma</a></td>
+<td>No (But specific version required)</td>
+<td>No</td>
+<td>Leave options to user</td>
+</tr>
+<tr>
+<td><a href="https://github.com/phoenix-dataplane/rdma-rs">rdma-rs</a></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>1. <a href="https://github.com/phoenix-dataplane/rdma-rs/blob/af8d2811cb01f9292a8648ac3a752245d3040da0/src/ibv.rs#L1397">No batching WRs posting operation</a><br>2. <a href="https://github.com/phoenix-dataplane/rdma-rs/blob/af8d2811cb01f9292a8648ac3a752245d3040da0/src/ibv.rs#L1401">Unable to specify send flags for moderation for fencing</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/RDMA-Rust/sideway"><strong>Sideway</strong></a></td>
+<td><strong>No</strong></td>
+<td><strong>Yes</strong></td>
+<td>Focused on modern verbs APIs (<code>ibv_wr_*</code>, CQ / QP Ex), zero-cost abstractions on the data path, and layered design</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#performance">Performance</a></h3>
+<p>To make sure our wrapper doesn't leave performance on the table, we vibe coded a <a href="https://github.com/linux-rdma/perftest">perftest</a>-style benchmarking tool
+called <a href="https://github.com/RDMA-Rust/stride">stride</a>. It's not meant to be a full replacement, just enough for validate that "Rust + sideway" can keep up
+with the classic C tooling.</p>
+<p>All experiments run on a Nebius GPU-H100-SXM instance with 8 * ConnectX-7 InfiniBand (IB) 400Gbps RDMA NIC</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Environment</td>
+<td>GPU-H100-SXM EU-NORTH1</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04.3 LTS (Noble Numbat) x86_64</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>2 × Intel(R) Xeon(R) Platinum 8468 (128) @ 2.10 GHz</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>6.11.0-1016-nvidia</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>1.536 TiB</td>
+</tr>
+<tr>
+<td>RNIC</td>
+<td>ConnectX-7 InfiniBand 400 Gbps (firmware 28.39.3004)</td>
+</tr>
+<tr>
+<td>OFED</td>
+<td>DOCA 2.9.2</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>NVIDIA H100 SXM5 80GB</td>
+</tr>
+<tr>
+<td>NVIDIA GPU Driver</td>
+<td>570.195.03</td>
+</tr>
+<tr>
+<td>CUDA</td>
+<td>12.8</td>
+</tr>
+<tr>
+<td>Stride</td>
+<td><a href="https://github.com/RDMA-Rust/stride/commit/87b37809af9b6518c23e11ee2f7615906f4dde9d">87b3780</a></td>
+</tr>
+<tr>
+<td>Perftest</td>
+<td><a href="https://github.com/linux-rdma/perftest/commit/20e05b9b92c4694b8f59d882ab2a3b27f28c887f">20e05b9</a></td>
+</tr>
+</tbody>
+</table>
+<p>We slighty modified stride's code to hardcode the LID in connection setup phase, to make it work with IB.
+Apart from that, both tools use the same verbs settings.</p>
+<h4 id="what-we-measure"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#what-we-measure">What we measure</a></h4>
+<p>We look at three basic scenarios, always with a single RC QP and message sizes from 2B to 8MiB:</p>
+<ol>
+<li>
+<p><strong>Single QP WRITE bandwidth (host / GPU memory)</strong></p>
+<ul>
+<li>Host memory: <code>S-1QP-BW</code> (stride) vs <code>P-1QP-BW</code> (perftest)</li>
+<li>GPU memory (GDR): <code>S-1QP-GDR-BW</code> vs <code>P-1QP-GDR-BW</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Single QP "maxed out" WRITE bandwidth (GPU memory)</strong></p>
+<ul>
+<li>GPU memory (GDR), Tx depth 4096, post list 64: <code>S-1QP-GDR-MAX-BW</code> vs <code>P-1QP-GDR-MAX-BW</code></li>
+<li>To better see small-message behavior, we also add message per second (MPS): <code>S-1QP-GDR-MAX-MPS</code> vs <code>P-1QP-GDR-MAX-MPS</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Single QP WRITE latency (host / GPU memory)</strong></p>
+<ul>
+<li>Host memory: <code>S-1QP-LAT</code> (stride) vs <code>P-1QP-LAT</code> (perftest)</li>
+<li>GPU memory (GDR): <code>S-1QP-GDR-LAT</code> (perftest does not support WRITE latency with GPU buffers)</li>
+<li>We also add P99 for jitter: <code>S-1QP-LAT-P99</code> vs <code>P-1QP-LAT-P99</code> vs <code>S-1QP-GDR-LAT-P99</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="results-at-a-glance"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#results-at-a-glance">Results at a glance</a></h4>
+<ul>
+<li><strong>Bandwidth (host memory / GDR)</strong>
+  For a single QP, sideway/stride and perftest track each other closely across
+  2B–8MiB. At large messages, both saturate the 400 Gb/s link:
+  stride reaches ~380 Gb/s, and perftest is within a few percent of that.</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Line Table</label><label for="__tabbed_1_2">Raw Data</label><label for="__tabbed_1_3">Command</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="bandwidth" src="bandwidth.svg" /></p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Message Size</th>
+<th>S-1QP-BW</th>
+<th>P-1QP-BW</th>
+<th>S-1QP-GDR-BW</th>
+<th>P-1QP-GDR-BW</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>0.0676</td>
+<td>0.068664</td>
+<td>0.077</td>
+<td>0.075424</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.1352</td>
+<td>0.16</td>
+<td>0.1546</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.278</td>
+<td>0.31</td>
+<td>0.3098</td>
+<td>0.31</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0.6217</td>
+<td>0.63</td>
+<td>0.6201</td>
+<td>0.62</td>
+</tr>
+<tr>
+<td>32</td>
+<td>1.2465</td>
+<td>1.26</td>
+<td>1.2379</td>
+<td>1.24</td>
+</tr>
+<tr>
+<td>64</td>
+<td>2.4941</td>
+<td>2.51</td>
+<td>2.4714</td>
+<td>2.49</td>
+</tr>
+<tr>
+<td>128</td>
+<td>4.3461</td>
+<td>5.04</td>
+<td>4.9527</td>
+<td>4.97</td>
+</tr>
+<tr>
+<td>256</td>
+<td>8.6742</td>
+<td>10.12</td>
+<td>9.9171</td>
+<td>9.93</td>
+</tr>
+<tr>
+<td>512</td>
+<td>17.3712</td>
+<td>20.25</td>
+<td>19.7997</td>
+<td>19.77</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>34.7707</td>
+<td>40.47</td>
+<td>39.6772</td>
+<td>39.8</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>69.6075</td>
+<td>80.88</td>
+<td>68.9667</td>
+<td>79.51</td>
+</tr>
+<tr>
+<td>4096</td>
+<td>139.2933</td>
+<td>164.27</td>
+<td>140.3711</td>
+<td>160.21</td>
+</tr>
+<tr>
+<td>8192</td>
+<td>278.4098</td>
+<td>305.2</td>
+<td>291.2193</td>
+<td>320.74</td>
+</tr>
+<tr>
+<td>16384</td>
+<td>360.9202</td>
+<td>343.31</td>
+<td>371.0165</td>
+<td>371.11</td>
+</tr>
+<tr>
+<td>32768</td>
+<td>372.1774</td>
+<td>358.08</td>
+<td>381.8385</td>
+<td>382.28</td>
+</tr>
+<tr>
+<td>65536</td>
+<td>377.9962</td>
+<td>365.91</td>
+<td>387.1709</td>
+<td>387.1</td>
+</tr>
+<tr>
+<td>131072</td>
+<td>381.4992</td>
+<td>370.98</td>
+<td>390.377</td>
+<td>390.55</td>
+</tr>
+<tr>
+<td>262144</td>
+<td>382.0199</td>
+<td>372.04</td>
+<td>391.1473</td>
+<td>391.67</td>
+</tr>
+<tr>
+<td>524288</td>
+<td>381.505</td>
+<td>372.35</td>
+<td>391.1888</td>
+<td>391.9</td>
+</tr>
+<tr>
+<td>1048576</td>
+<td>381.2342</td>
+<td>372.09</td>
+<td>391.1909</td>
+<td>392.25</td>
+</tr>
+<tr>
+<td>2097152</td>
+<td>381.307</td>
+<td>372.12</td>
+<td>391.1919</td>
+<td>392.39</td>
+</tr>
+<tr>
+<td>4194304</td>
+<td>380.6771</td>
+<td>371.92</td>
+<td>391.1924</td>
+<td>392.44</td>
+</tr>
+<tr>
+<td>8388608</td>
+<td>379.7436</td>
+<td>371.82</td>
+<td>391.1926</td>
+<td>392.44</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Perftest server</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Perftest client</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Perftest server (GDR)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span><span class="w"> </span>--use_cuda<span class="w"> </span><span class="m">4</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Perftest client (GDR)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span><span class="w"> </span>--use_cuda<span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Stride server</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Stride client</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-n<span class="w"> </span><span class="m">1000000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Stride server (GDR)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">4</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># Stride client (GDR)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-n<span class="w"> </span><span class="m">1000000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">5</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Bandwidth (GDR, maxed out)</strong>
+  With a larger <code>tx_depth</code> and <code>post_list</code>, a single QP hits ~392.5 Gbit/s — essentially
+  line-rate for a 400 Gbit/s port. For small messages, throughput reaches ~20 Mpps.</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Line Table</label><label for="__tabbed_2_2">Raw Data</label><label for="__tabbed_2_3">Command</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="bandwidth" src="bandwidth_max.svg" /></p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Message Size</th>
+<th>S-1QP-GDR-MAX-BW</th>
+<th>S-1QP-GDR-MAX-MPS</th>
+<th>P-1QP-GDR-MAX-BW</th>
+<th>P-1QP-GDR-MAX-MPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>0.3153</td>
+<td>19.7076</td>
+<td>0.32</td>
+<td>19.855156</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.632</td>
+<td>19.7505</td>
+<td>0.64</td>
+<td>19.890087</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1.2636</td>
+<td>19.7432</td>
+<td>1.28</td>
+<td>19.92576</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2.5247</td>
+<td>19.7239</td>
+<td>2.54</td>
+<td>19.851894</td>
+</tr>
+<tr>
+<td>32</td>
+<td>5.0515</td>
+<td>19.7323</td>
+<td>5.07</td>
+<td>19.800955</td>
+</tr>
+<tr>
+<td>64</td>
+<td>10.0584</td>
+<td>19.6453</td>
+<td>10.11</td>
+<td>19.740872</td>
+</tr>
+<tr>
+<td>128</td>
+<td>20.068</td>
+<td>19.5976</td>
+<td>20.13</td>
+<td>19.659211</td>
+</tr>
+<tr>
+<td>256</td>
+<td>39.8753</td>
+<td>19.4703</td>
+<td>39.73</td>
+<td>19.400613</td>
+</tr>
+<tr>
+<td>512</td>
+<td>77.5093</td>
+<td>18.9232</td>
+<td>78.32</td>
+<td>19.121788</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>147.5344</td>
+<td>18.0096</td>
+<td>148.25</td>
+<td>18.096757</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>237.1809</td>
+<td>14.4764</td>
+<td>240.4</td>
+<td>14.672663</td>
+</tr>
+<tr>
+<td>4096</td>
+<td>321.151</td>
+<td>9.8007</td>
+<td>324.23</td>
+<td>9.894732</td>
+</tr>
+<tr>
+<td>8192</td>
+<td>358.1028</td>
+<td>5.4642</td>
+<td>361.24</td>
+<td>5.512146</td>
+</tr>
+<tr>
+<td>16384</td>
+<td>391.0239</td>
+<td>2.9833</td>
+<td>391.81</td>
+<td>2.989263</td>
+</tr>
+<tr>
+<td>32768</td>
+<td>391.1139</td>
+<td>1.492</td>
+<td>392.17</td>
+<td>1.495991</td>
+</tr>
+<tr>
+<td>65536</td>
+<td>391.1547</td>
+<td>0.7461</td>
+<td>392.51</td>
+<td>0.74865</td>
+</tr>
+<tr>
+<td>131072</td>
+<td>391.1747</td>
+<td>0.3731</td>
+<td>392.63</td>
+<td>0.374441</td>
+</tr>
+<tr>
+<td>262144</td>
+<td>391.1837</td>
+<td>0.1865</td>
+<td>392.6</td>
+<td>0.187209</td>
+</tr>
+<tr>
+<td>524288</td>
+<td>391.1888</td>
+<td>0.0933</td>
+<td>392.5</td>
+<td>0.093579</td>
+</tr>
+<tr>
+<td>1048576</td>
+<td>391.1903</td>
+<td>0.0466</td>
+<td>392.46</td>
+<td>0.046785</td>
+</tr>
+<tr>
+<td>2097152</td>
+<td>391.1912</td>
+<td>0.0233</td>
+<td>392.43</td>
+<td>0.023391</td>
+</tr>
+<tr>
+<td>4194304</td>
+<td>391.1923</td>
+<td>0.0117</td>
+<td>392.44</td>
+<td>0.011696</td>
+</tr>
+<tr>
+<td>8388608</td>
+<td>391.1925</td>
+<td>0.0058</td>
+<td>392.44</td>
+<td>0.005848</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Perftest server</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">102400</span><span class="w"> </span>-a<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span><span class="w"> </span>--report_gbits<span class="w"> </span>--use_cuda<span class="w"> </span><span class="m">4</span><span class="w"> </span>-l<span class="w"> </span><span class="m">64</span><span class="w"> </span>-t<span class="w"> </span><span class="m">4096</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Perftest client</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>ib_write_bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">102400</span><span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-Q<span class="w"> </span><span class="m">1</span><span class="w"> </span>--report_gbits<span class="w"> </span>--use_cuda<span class="w"> </span><span class="m">5</span><span class="w"> </span>-l<span class="w"> </span><span class="m">64</span><span class="w"> </span>-t<span class="w"> </span><span class="m">4096</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Stride server</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">102400</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">4</span><span class="w"> </span>-l<span class="w"> </span><span class="m">64</span><span class="w"> </span>-t<span class="w"> </span><span class="m">4096</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Stride client</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>bw<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">102400</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">5</span><span class="w"> </span>-l<span class="w"> </span><span class="m">64</span><span class="w"> </span>-t<span class="w"> </span><span class="m">4096</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>Latency</strong>
+  For small messages in host memory, perftest’s numbers look better at first glance — but that’s because we measure slightly different things:</p>
+<ul>
+<li>perftest’s WRITE latency is effectively <strong>half</strong> of a round-trip: client WRITE → server DMA starts → server DMA ends (single-trip data + DMA time).</li>
+<li>stride’s WRITE latency measures <strong>data transfer + ACK</strong> (client WRITE → server NIC ACK → client CQE).</li>
+</ul>
+</li>
+</ul>
+<p>GPU WRITE latency with stride is slightly higher but still scales cleanly with message size.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Line Table</label><label for="__tabbed_3_2">Raw Data</label><label for="__tabbed_3_3">Command</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="latency" src="latency.svg" /></p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Message Size</th>
+<th>P-1QP-LAT</th>
+<th>P-1QP-LAT-P99</th>
+<th>S-1QP-LAT</th>
+<th>S-1QP-LAT-P99</th>
+<th>S-1QP-GDR-LAT</th>
+<th>S-1QP-GDR-LAT-P99</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>3.38</td>
+<td>3.47</td>
+<td>5.286</td>
+<td>5.487</td>
+<td>5.412</td>
+<td>5.487</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3.38</td>
+<td>3.46</td>
+<td>5.322</td>
+<td>5.495</td>
+<td>5.411</td>
+<td>5.479</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3.38</td>
+<td>3.47</td>
+<td>5.334</td>
+<td>5.495</td>
+<td>5.42</td>
+<td>5.483</td>
+</tr>
+<tr>
+<td>16</td>
+<td>3.39</td>
+<td>3.47</td>
+<td>5.336</td>
+<td>5.495</td>
+<td>5.418</td>
+<td>5.487</td>
+</tr>
+<tr>
+<td>32</td>
+<td>3.4</td>
+<td>3.51</td>
+<td>5.329</td>
+<td>5.495</td>
+<td>5.415</td>
+<td>5.483</td>
+</tr>
+<tr>
+<td>64</td>
+<td>3.4</td>
+<td>3.48</td>
+<td>5.351</td>
+<td>5.495</td>
+<td>5.432</td>
+<td>5.499</td>
+</tr>
+<tr>
+<td>128</td>
+<td>3.46</td>
+<td>3.57</td>
+<td>5.371</td>
+<td>5.543</td>
+<td>5.45</td>
+<td>5.511</td>
+</tr>
+<tr>
+<td>256</td>
+<td>3.51</td>
+<td>3.62</td>
+<td>5.421</td>
+<td>5.575</td>
+<td>5.473</td>
+<td>5.539</td>
+</tr>
+<tr>
+<td>512</td>
+<td>3.57</td>
+<td>3.71</td>
+<td>5.48</td>
+<td>5.619</td>
+<td>5.486</td>
+<td>5.555</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>3.61</td>
+<td>3.78</td>
+<td>5.53</td>
+<td>5.683</td>
+<td>5.523</td>
+<td>5.595</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>3.75</td>
+<td>4.19</td>
+<td>5.634</td>
+<td>5.743</td>
+<td>5.583</td>
+<td>5.647</td>
+</tr>
+<tr>
+<td>4096</td>
+<td>3.93</td>
+<td>4.49</td>
+<td>5.785</td>
+<td>5.895</td>
+<td>5.692</td>
+<td>5.767</td>
+</tr>
+<tr>
+<td>8192</td>
+<td>4.13</td>
+<td>4.75</td>
+<td>5.947</td>
+<td>6.163</td>
+<td>5.887</td>
+<td>6.027</td>
+</tr>
+<tr>
+<td>16384</td>
+<td>4.53</td>
+<td>5.23</td>
+<td>6.357</td>
+<td>6.499</td>
+<td>6.242</td>
+<td>6.315</td>
+</tr>
+<tr>
+<td>32768</td>
+<td>5.07</td>
+<td>5.61</td>
+<td>6.968</td>
+<td>7.087</td>
+<td>6.724</td>
+<td>6.803</td>
+</tr>
+<tr>
+<td>65536</td>
+<td>6.11</td>
+<td>6.84</td>
+<td>7.91</td>
+<td>8.063</td>
+<td>7.66</td>
+<td>7.751</td>
+</tr>
+<tr>
+<td>131072</td>
+<td>9.53</td>
+<td>9.9</td>
+<td>10.644</td>
+<td>10.807</td>
+<td>10.12</td>
+<td>10.207</td>
+</tr>
+<tr>
+<td>262144</td>
+<td>14.66</td>
+<td>15.98</td>
+<td>14.999</td>
+<td>15.239</td>
+<td>13.86</td>
+<td>13.967</td>
+</tr>
+<tr>
+<td>524288</td>
+<td>20.12</td>
+<td>21.64</td>
+<td>20.692</td>
+<td>21.599</td>
+<td>19.25</td>
+<td>19.359</td>
+</tr>
+<tr>
+<td>1048576</td>
+<td>30.93</td>
+<td>33.13</td>
+<td>31.571</td>
+<td>33.567</td>
+<td>29.983</td>
+<td>30.079</td>
+</tr>
+<tr>
+<td>2097152</td>
+<td>53.5</td>
+<td>56.62</td>
+<td>53.569</td>
+<td>57.503</td>
+<td>51.442</td>
+<td>51.551</td>
+</tr>
+<tr>
+<td>4194304</td>
+<td>99</td>
+<td>103.14</td>
+<td>97.649</td>
+<td>104.575</td>
+<td>94.327</td>
+<td>94.463</td>
+</tr>
+<tr>
+<td>8388608</td>
+<td>189.92</td>
+<td>194.66</td>
+<td>186.243</td>
+<td>196.351</td>
+<td>180.107</td>
+<td>180.223</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Perftest server</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>ib_write_lat<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>-I<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Perftest client</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>ib_write_lat<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-I<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Stride server</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>lat<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Stride client</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>lat<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span><span class="m">127</span>.0.0.1
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Stride server (GDR)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">66</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>lat<span class="w"> </span>-d<span class="w"> </span>mlx5_0<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">4</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># Stride client (GDR)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>taskset<span class="w"> </span>-c<span class="w"> </span><span class="m">68</span><span class="w"> </span>stride-perf<span class="w"> </span>write<span class="w"> </span>lat<span class="w"> </span>-d<span class="w"> </span>mlx5_1<span class="w"> </span>-n<span class="w"> </span><span class="m">100000</span><span class="w"> </span>-a<span class="w"> </span>--max-msg-size<span class="w"> </span><span class="k">$((</span><span class="m">8</span><span class="o">*</span><span class="m">1024</span><span class="o">*</span><span class="m">1024</span><span class="k">))</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--use-cuda<span class="w"> </span><span class="m">5</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="design-layered-abstraction"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#design-layered-abstraction">Design: layered abstraction</a></h3>
+<p>We treat RDMA abstraction as a layered problem:</p>
+<div class="d2"><svg data-d2-version="v0.7.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 511 1182" width="358" height="828" role="img" aria-label="Diagram"><svg class="d2-cda2e632d8404e45ab56f21a098ec6a1 d2-svg" width="511" height="1182" viewBox="-101 -101 511 1182"><rect x="-101.000000" y="-101.000000" width="511.000000" height="1182.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0" /><style type="text/css">
+.d2-cda2e632d8404e45ab56f21a098ec6a1 .text-bold {
+	font-family: "d2-cda2e632d8404e45ab56f21a098ec6a1-font-bold";
+}
+@font-face {
+	font-family: d2-cda2e632d8404e45ab56f21a098ec6a1-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}
+.d2-cda2e632d8404e45ab56f21a098ec6a1 .text-italic {
+	font-family: "d2-cda2e632d8404e45ab56f21a098ec6a1-font-italic";
+}
+@font-face {
+	font-family: d2-cda2e632d8404e45ab56f21a098ec6a1-font-italic;
+	src: url("data:application/font-woff;base64,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");
+}</style><style type="text/css">.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N1{fill:#0A0F25;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N2{fill:#676C7E;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N3{fill:#9499AB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N4{fill:#CFD2DD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N5{fill:#DEE1EB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N6{fill:#EEF1F8;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-N7{fill:#FFFFFF;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B1{fill:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B2{fill:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B3{fill:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B4{fill:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B5{fill:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-B6{fill:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-AA2{fill:#4A6FF3;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-AA4{fill:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-AA5{fill:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-AB4{fill:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .fill-AB5{fill:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N1{stroke:#0A0F25;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N2{stroke:#676C7E;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N3{stroke:#9499AB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N4{stroke:#CFD2DD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N5{stroke:#DEE1EB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N6{stroke:#EEF1F8;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-N7{stroke:#FFFFFF;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B1{stroke:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B2{stroke:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B3{stroke:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B4{stroke:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B5{stroke:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-B6{stroke:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N1{background-color:#0A0F25;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N2{background-color:#676C7E;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N3{background-color:#9499AB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N4{background-color:#CFD2DD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N5{background-color:#DEE1EB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N6{background-color:#EEF1F8;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-N7{background-color:#FFFFFF;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B1{background-color:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B2{background-color:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B3{background-color:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B4{background-color:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B5{background-color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-B6{background-color:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N1{color:#0A0F25;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N2{color:#676C7E;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N3{color:#9499AB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N4{color:#CFD2DD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N5{color:#DEE1EB;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N6{color:#EEF1F8;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-N7{color:#FFFFFF;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B1{color:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B2{color:#0D32B2;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B3{color:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B4{color:#E3E9FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B5{color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-B6{color:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-AA2{color:#4A6FF3;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-AA4{color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-AA5{color:#F7F8FE;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-AB4{color:#EDF0FD;}
+		.d2-cda2e632d8404e45ab56f21a098ec6a1 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-cda2e632d8404e45ab56f21a098ec6a1);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}</style><g class="cmRtYS1jb3Jl"><g class="shape"><rect x="96.000000" y="0.000000" width="118.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="155.000000" y="38.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">rdma-core</text></g><g class="cmRtYS1jb3JlLW11bW15"><g class="shape"><rect x="63.000000" y="187.000000" width="183.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="154.500000" y="225.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">rdma-core-mummy</text></g><g class="cmRtYS1tdW1teS1zeXM="><g class="shape"><rect x="68.000000" y="374.000000" width="174.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="155.000000" y="412.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">rdma-mummy-sys</text></g><g class="c2lkZXdheQ=="><g class="shape"><rect x="103.000000" y="561.000000" width="104.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="155.000000" y="599.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">sideway</text></g><g class="dHJlc3Bhc3M="><g class="shape"><rect x="102.000000" y="748.000000" width="105.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="154.500000" y="786.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">trespass</text></g><g class="WW91ciBSUEMgLyBzdG9yYWdlIC8gaW5mZXJlbmNlIHNlcnZpY2U="><g class="shape"><rect x="0.000000" y="914.000000" width="309.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="154.500000" y="952.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">Your RPC / storage / inference service</text></g><g class="KHJkbWEtY29yZSAtJmd0OyByZG1hLWNvcmUtbXVtbXkpWzBd"><marker id="mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#0D32B2" class="connection fill-B1" stroke-width="2" /> </marker><path d="M 154.500000 67.500000 C 154.500000 114.300003 154.500000 138.699997 154.500000 183.500000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134)" mask="url(#d2-cda2e632d8404e45ab56f21a098ec6a1)" /><text x="155.000000" y="132.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">dlopen</text></g><g class="KHJkbWEtY29yZS1tdW1teSAtJmd0OyByZG1hLW11bW15LXN5cylbMF0="><path d="M 154.500000 254.500000 C 154.500000 301.299988 154.500000 325.700012 154.500000 370.500000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134)" mask="url(#d2-cda2e632d8404e45ab56f21a098ec6a1)" /><text x="155.000000" y="319.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">bindgen + manual binding</text></g><g class="KHJkbWEtbXVtbXktc3lzIC0mZ3Q7IHNpZGV3YXkpWzBd"><path d="M 154.500000 441.500000 C 154.500000 488.299988 154.500000 512.700012 154.500000 557.500000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134)" mask="url(#d2-cda2e632d8404e45ab56f21a098ec6a1)" /><text x="154.500000" y="506.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">Rust flavored wrapper</text></g><g class="KHNpZGV3YXkgLSZndDsgdHJlc3Bhc3MpWzBd"><path d="M 154.500000 628.500000 C 154.500000 675.299988 154.500000 699.700012 154.500000 744.500000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134)" mask="url(#d2-cda2e632d8404e45ab56f21a098ec6a1)" /><text x="155.000000" y="693.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">socket-like communication library</text></g><g class="KHRyZXNwYXNzIC0mZ3Q7IFlvdXIgUlBDIC8gc3RvcmFnZSAvIGluZmVyZW5jZSBzZXJ2aWNlKVswXQ=="><path d="M 154.500000 816.000000 C 154.500000 854.000000 154.500000 874.000000 154.500000 910.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-cda2e632d8404e45ab56f21a098ec6a1-3488378134)" mask="url(#d2-cda2e632d8404e45ab56f21a098ec6a1)" /></g><mask id="d2-cda2e632d8404e45ab56f21a098ec6a1" maskUnits="userSpaceOnUse" x="-101" y="-101" width="511" height="1182">
+<rect x="-101" y="-101" width="511" height="1182" fill="white" />
+<rect x="130.000000" y="116.000000" width="50" height="21" fill="black" />
+<rect x="67.000000" y="303.000000" width="176" height="21" fill="black" />
+<rect x="79.000000" y="490.000000" width="151" height="21" fill="black" />
+<rect x="41.000000" y="677.000000" width="228" height="21" fill="black" />
+</mask></svg></svg></div>
+<h4 id="rdma-mummy-sys-the-raw-rdma-core-api-wrapper"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#rdma-mummy-sys-the-raw-rdma-core-api-wrapper"><code>rdma-mummy-sys</code> -- the raw rdma-core API wrapper</a></h4>
+<p>The first layer is a bindgen-generated + manually corrected library on top of rdma-core (actually <code>rdma-core-mummy</code>, more on that in the <code>dlopen</code> section), This is:</p>
+<ul>
+<li>The base for all upper layers</li>
+<li>Available for users who want direct access to the C APIs with minimal sugar</li>
+</ul>
+<h4 id="sideway-the-rust-flavor-wrapper-over-rdma-core"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#sideway-the-rust-flavor-wrapper-over-rdma-core"><code>Sideway</code> -- the Rust flavor wrapper over rdma-core</a></h4>
+<p>The second layer is sideway, a Rust-flavored rdma-core wrapper. It:</p>
+<ul>
+<li>Re-encapsulates C macros and anonymous enums as Rust enums</li>
+<li>Uses the builder pattern to make APIs more ergonomic</li>
+<li>Encapsulates an iterator-style CQ polling API
+The iterator style is faster than <code>ibv_poll_cq</code> in some projects, and exposes more information: for example, it lets you directly obtain hardware timestamps from CQEs.</li>
+</ul>
+<p>We deliberately <strong>do not</strong> make everything safe:</p>
+<ul>
+<li>Wrappers for <code>ibv_reg_mr</code> and <code>ibv_post_send</code> / <code>ibv_wr_*</code> remain <code>unsafe</code></li>
+<li>Trying to fully encode their safety in this layer would either:<ul>
+<li>Hurt performance</li>
+<li>Over-constrain upper layers that need to do unusual things (e.g., GDR with GPU memory)</li>
+</ul>
+</li>
+</ul>
+<p>Instead, the idea is:</p>
+<ul>
+<li>Sideway gives you a clear, zero-cost mapping to modern verbs</li>
+<li>Upper layers (like <code>trespass</code> or your own library) can build safe memory pools or connection abstractions on top</li>
+</ul>
+<p>For user experience, we also provide a unified interface over CQ / CQ Ex and QP / QP Ex.
+If you've written RDMA before, you must know <code>ibv_post_send</code> and <code>ibv_poll_cq</code>, but you may not have used <code>ibv_wr_*</code> and <code>ibv_start_poll</code>, these newer APIs are more efficient and expose features like hardware timestamps from work completions. Sideway lets you start with the "classic" style and move to the extended APIs with minimal changes.</p>
+<p>Let's compare the traditional <code>ibv_post_send</code>, and <code>ibv_wr_*</code>, and our sideway</p>
+<div class="grid">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">ibv_post_send</label><label for="__tabbed_4_2">ibv_wr_*</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ibv_send_wr</span><span class="w"> </span><span class="n">wr</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ibv_sge</span><span class="w"> </span><span class="n">sge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">.</span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_addr</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">.</span><span class="n">lkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lkey</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">};</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">wr</span><span class="p">.</span><span class="n">wr_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">233</span><span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">wr</span><span class="p">.</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">wr</span><span class="p">.</span><span class="n">sg_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sge</span><span class="p">;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">wr</span><span class="p">.</span><span class="n">num_sge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">wr</span><span class="p">.</span><span class="n">opcode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IBV_WR_RDMA_WRITE</span><span class="p">;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">wr</span><span class="p">.</span><span class="n">send_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IBV_SEND_SIGNALED</span><span class="p">;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">wr</span><span class="p">.</span><span class="n">wr</span><span class="p">.</span><span class="n">rdma</span><span class="p">.</span><span class="n">remote_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">remote_addr</span><span class="p">;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">wr</span><span class="p">.</span><span class="n">wr</span><span class="p">.</span><span class="n">rdma</span><span class="p">.</span><span class="n">rkey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rkey</span><span class="p">;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="c1">// Before actual post, you could construct more WRs use `next` to chain them,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="c1">// which could increase performance</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ibv_post_send</span><span class="p">(</span><span class="n">qp</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wr</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">ibv_wr_start</span><span class="p">(</span><span class="n">qp</span><span class="p">);</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">qp</span><span class="o">-&gt;</span><span class="n">wr_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">233</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">qp</span><span class="o">-&gt;</span><span class="n">wr_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IBV_SEND_SIGNALED</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">ibv_wr_rdma_write</span><span class="p">(</span><span class="n">qp</span><span class="p">,</span><span class="w"> </span><span class="n">rkey</span><span class="p">,</span><span class="w"> </span><span class="n">remote_addr</span><span class="p">);</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">ibv_wr_set_sge</span><span class="p">(</span><span class="n">qp</span><span class="p">,</span><span class="w"> </span><span class="n">lkey</span><span class="p">,</span><span class="w"> </span><span class="n">local_addr</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">);</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">// Before actual post, you could construct more WRs and then post them at once,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">// which could increase performance</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">ibv_wr_complete</span><span class="p">(</span><span class="n">qp</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><span class="filename">sideway</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">guard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qp</span><span class="p">.</span><span class="n">start_post_send</span><span class="p">();</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">write_handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guard</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="p">.</span><span class="n">construct_wr</span><span class="p">(</span><span class="mi">233</span><span class="p">,</span><span class="w"> </span><span class="n">WorkRequestFlags</span><span class="p">::</span><span class="n">Signaled</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">.</span><span class="n">setup_write</span><span class="p">(</span><span class="n">rmr</span><span class="p">.</span><span class="n">rkey</span><span class="p">(),</span><span class="w"> </span><span class="n">rmr</span><span class="p">.</span><span class="n">get_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">_</span><span class="p">);</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">write_handle</span><span class="p">.</span><span class="n">setup_sge</span><span class="p">(</span><span class="n">lmr</span><span class="p">.</span><span class="n">lkey</span><span class="p">(),</span><span class="w"> </span><span class="n">lmr</span><span class="p">.</span><span class="n">get_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">);</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1">// Before actual post, you could construct more WRs and then post them at once,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1">// which could increase performance</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">guard</span><span class="p">.</span><span class="n">post</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<p>How about <code>ibv_poll_cq</code> vs <code>ibv_start_poll</code> vs sideway?</p>
+<p>Although <code>ibv_poll_cq</code> looks cleaner, it doesn't support hardware timestamps and costs more cycles,
+because it has to copy from CQ to work completions.</p>
+<div class="grid">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">ibv_poll_cq</label><label for="__tabbed_5_2">ibv_start_poll</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ibv_wc</span><span class="w"> </span><span class="n">wc</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ibv_poll_cq</span><span class="p">(</span><span class="n">cq</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wc</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;wr_id: %lu, status: %u, opcode: %u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">wr_id</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">opcode</span><span class="p">);</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ibv_start_poll</span><span class="p">(</span><span class="n">cq</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// assume the first ret is not ENOENT</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ENOENT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;wr_id: %lu, status: %u, opcode: %u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cq</span><span class="o">-&gt;</span><span class="n">wr_id</span><span class="p">,</span><span class="w"> </span><span class="n">cq</span><span class="o">-&gt;</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">ibv_wc_read_opcode</span><span class="p">(</span><span class="n">cq</span><span class="p">));</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ibv_next_poll</span><span class="p">(</span><span class="n">cq</span><span class="p">);</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">ibv_end_poll</span><span class="p">(</span><span class="n">cq</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><span class="filename">sideway</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">match</span><span class="w"> </span><span class="n">cq</span><span class="p">.</span><span class="n">start_poll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">poller</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">wc</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">poller</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">            </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;wr_id: {}, status: {}, opcode: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">wr_id</span><span class="p">(),</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">status</span><span class="p">(),</span><span class="w"> </span><span class="n">wc</span><span class="p">.</span><span class="n">opcode</span><span class="p">())</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nb">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+<p>We also invest in <strong>better error reporting</strong> on the RDMA control path. Instead of a mysterious <code>-EINVAL</code> from the kernel on <code>modify_qp</code>, we:</p>
+<ul>
+<li>Tell you what attribute is invalid</li>
+<li>Surface specific error-based errors (like <code>ETIMEDOUT</code>) as typed Rust errors, making it easier to debug and monitor control-plane behavior</li>
+</ul>
+<details>
+<summary>Example on invalid attributes</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gh">diff --git a/examples/rc_pingpong_split.rs b/examples/rc_pingpong_split.rs</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="gh">index c0d53ed..2d9c61c 100644</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="gd">--- a/examples/rc_pingpong_split.rs</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="gi">+++ b/examples/rc_pingpong_split.rs</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="gu">@@ -250,8 +250,7 @@ impl PingPongContext {</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w"> </span>           .setup_path_mtu(mtu)
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w"> </span>           .setup_dest_qp_num(remote_context.qp_number)
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w"> </span>           .setup_rq_psn(psn)
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="gd">-            .setup_max_dest_read_atomic(0)</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="gd">-            .setup_min_rnr_timer(0);</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="gi">+            .setup_port(ib_port);</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w"> </span>       // setup address vector
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w"> </span>       let mut ah_attr = AddressHandleAttribute::new();
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>$<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">127</span>.0.0.1
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span>Finished<span class="w"> </span><span class="sb">`</span>dev<span class="sb">`</span><span class="w"> </span>profile<span class="w"> </span><span class="o">[</span>unoptimized<span class="w"> </span>+<span class="w"> </span>debuginfo<span class="o">]</span><span class="w"> </span>target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.09s
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span>Running<span class="w"> </span><span class="sb">`</span>target/debug/examples/rc_pingpong_split<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="sb">`</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">local</span><span class="w"> </span>address:<span class="w"> </span>QPN<span class="w"> </span>0x007a,<span class="w"> </span>PSN<span class="w"> </span>0xcf45d8,<span class="w"> </span>GID<span class="w"> </span><span class="m">0000</span>:0000:0000:0000:0000:ffff:ac1e:0818
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>remote<span class="w"> </span>address:<span class="w"> </span>QPN<span class="w"> </span>0x0079,<span class="w"> </span>PSN<span class="w"> </span>0x3f2d77,<span class="w"> </span>GID<span class="w"> </span><span class="m">0000</span>:0000:0000:0000:0000:ffff:ac1e:0818
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>thread<span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="w"> </span>panicked<span class="w"> </span>at<span class="w"> </span>examples/rc_pingpong_split.rs:266:31:
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="hll">Failed<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span>QP<span class="w"> </span>to<span class="w"> </span>RTR:<span class="w"> </span>ModifyQueuePairError<span class="o">(</span>InvalidAttributeMask<span class="w"> </span><span class="o">{</span><span class="w"> </span>cur_state:<span class="w"> </span>Init,<span class="w"> </span>next_state:<span class="w"> </span>ReadyToReceive,<span class="w"> </span>invalid:<span class="w"> </span>QueuePairAttributeMask<span class="o">[</span>Port<span class="o">]</span>,<span class="w"> </span>needed:<span class="w"> </span>QueuePairAttributeMask<span class="o">[</span>MinResponderNotReadyTimer,<span class="w"> </span>MaxDestinationReadAtomic<span class="o">]</span>,<span class="w"> </span>source:<span class="w"> </span>Os<span class="w"> </span><span class="o">{</span><span class="w"> </span>code:<span class="w"> </span><span class="m">22</span>,<span class="w"> </span>kind:<span class="w"> </span>InvalidInput,<span class="w"> </span>message:<span class="w"> </span><span class="s2">&quot;Invalid argument&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">})</span>
+</span><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>note:<span class="w"> </span>run<span class="w"> </span>with<span class="w"> </span><span class="sb">`</span><span class="nv">RUST_BACKTRACE</span><span class="o">=</span><span class="m">1</span><span class="sb">`</span><span class="w"> </span>environment<span class="w"> </span>variable<span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>a<span class="w"> </span>backtrace
+</code></pre></div>
+<p>The kernel only tells you <code>EINVAL</code>. sideway tells you that you need to set <code>MinResponderNotReadyTimer</code> and <code>MaxDestinationReadAtomic</code>, and you <strong>shouldn't</strong> set
+<code>Port</code> in this transition. It's much easier to fix the code when you have that context.</p>
+</details>
+<details>
+<summary>Example on invalid GID / Addr</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>mlx_0<span class="w"> </span>-g<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>$<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">127</span>.0.0.1
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Finished<span class="w"> </span><span class="sb">`</span>dev<span class="sb">`</span><span class="w"> </span>profile<span class="w"> </span><span class="o">[</span>unoptimized<span class="w"> </span>+<span class="w"> </span>debuginfo<span class="o">]</span><span class="w"> </span>target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.09s
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Running<span class="w"> </span><span class="sb">`</span>target/debug/examples/rc_pingpong_split<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="sb">`</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w"> </span><span class="nb">local</span><span class="w"> </span>address:<span class="w"> </span>QPN<span class="w"> </span>0x007d,<span class="w"> </span>PSN<span class="w"> </span>0xcd1e89,<span class="w"> </span>GID<span class="w"> </span>fe80:0000:0000:0000:5054:00ff:fe36:7656
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>remote<span class="w"> </span>address:<span class="w"> </span>QPN<span class="w"> </span>0x014b,<span class="w"> </span>PSN<span class="w"> </span>0xa0dc7d,<span class="w"> </span>GID<span class="w"> </span>fe80:0000:0000:0000:fc6b:02ff:fea7:d4bf
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>thread<span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="w"> </span>panicked<span class="w"> </span>at<span class="w"> </span>examples/rc_pingpong_split.rs:267:31:
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="hll">Failed<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span>QP<span class="w"> </span>to<span class="w"> </span>RTR:<span class="w"> </span>ModifyQueuePairError<span class="o">(</span>ResolveRouteTimedout<span class="w"> </span><span class="o">{</span><span class="w"> </span>sgid_index:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>gid:<span class="w"> </span>Gid<span class="w"> </span><span class="o">{</span><span class="w"> </span>raw:<span class="w"> </span><span class="o">[</span><span class="m">254</span>,<span class="w"> </span><span class="m">128</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">252</span>,<span class="w"> </span><span class="m">107</span>,<span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="m">255</span>,<span class="w"> </span><span class="m">254</span>,<span class="w"> </span><span class="m">167</span>,<span class="w"> </span><span class="m">212</span>,<span class="w"> </span><span class="m">191</span><span class="o">]</span><span class="w"> </span><span class="o">}</span>,<span class="w"> </span>source:<span class="w"> </span>Os<span class="w"> </span><span class="o">{</span><span class="w"> </span>code:<span class="w"> </span><span class="m">110</span>,<span class="w"> </span>kind:<span class="w"> </span>TimedOut,<span class="w"> </span>message:<span class="w"> </span><span class="s2">&quot;Connection timed out&quot;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">})</span>
+</span><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>note:<span class="w"> </span>run<span class="w"> </span>with<span class="w"> </span><span class="sb">`</span><span class="nv">RUST_BACKTRACE</span><span class="o">=</span><span class="m">1</span><span class="sb">`</span><span class="w"> </span>environment<span class="w"> </span>variable<span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>a<span class="w"> </span>backtrace
+</code></pre></div>
+<p>The result gives us a hint with <code>sgid_index</code> and <code>gid</code>, let's look them up with <code>show_gids</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>show_gids
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Finished<span class="w"> </span><span class="sb">`</span>dev<span class="sb">`</span><span class="w"> </span>profile<span class="w"> </span><span class="o">[</span>unoptimized<span class="w"> </span>+<span class="w"> </span>debuginfo<span class="o">]</span><span class="w"> </span>target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.09s
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w"> </span>Running<span class="w"> </span><span class="sb">`</span>target/debug/examples/show_gids<span class="sb">`</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>Dev<span class="w">   </span><span class="p">|</span><span class="w"> </span>Port<span class="w"> </span><span class="p">|</span><span class="w"> </span>Index<span class="w"> </span><span class="p">|</span><span class="w">                   </span>GID<span class="w">                   </span><span class="p">|</span><span class="w">    </span>IPv4<span class="w">     </span><span class="p">|</span><span class="w">  </span>Ver<span class="w">   </span><span class="p">|</span><span class="w"> </span>Netdev
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>--------+------+-------+-----------------------------------------+-------------+--------+---------
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="hll">mlx5_0<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>fe80:0000:0000:0000:fc6b:02ff:fea7:d4bf<span class="w"> </span><span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>RoCEv1<span class="w"> </span><span class="p">|</span><span class="w"> </span>enp8s0
+</span><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>mlx5_0<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>fe80:0000:0000:0000:fc6b:02ff:fea7:d4bf<span class="w"> </span><span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>RoCEv2<span class="w"> </span><span class="p">|</span><span class="w"> </span>enp8s0
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="hll">rxe_0<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>fe80:0000:0000:0000:5054:00ff:fe36:7656<span class="w"> </span><span class="p">|</span><span class="w">             </span><span class="p">|</span><span class="w"> </span>RoCEv2<span class="w"> </span><span class="p">|</span><span class="w"> </span>enp6s0
+</span></code></pre></div>
+<p>Looks like we're using a link local address for connection setup! That's why it didn't make it. We should set up a global scope IPv6 or IPv4 address with correct routes to make it work.
+Without a hint of GID index and GID, it takes experience and time to figure out where that <code>ETIMEDOUT</code> came from.</p>
+</details>
+<h4 id="trepass-the-communication-library-wip"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#trepass-the-communication-library-wip"><code>Trepass</code> -- the communication library (WIP)</a></h4>
+<p>The third layer is <code>trespass</code>, a communication library that offers a socket-like interface over RDMA, you can think of it as</p>
+<ul>
+<li>In the same space as UCX / <code>libfabric</code></li>
+<li>But intentionally much simpler and focused
+Its goals:</li>
+<li>Hide RDMA details such as<ul>
+<li>Which operations consume recv WQEs</li>
+<li>How to do flow control</li>
+<li>How to exchange MR information and other connection information</li>
+<li>How to do batching for best performance</li>
+</ul>
+</li>
+<li>Let users reuse existing socket programming experience (C / C++ / Rust) to get started quickly.</li>
+</ul>
+<h4 id="rpc-library"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#rpc-library">RPC library?</a></h4>
+<p>The top layer, an RPC framework using RDMA as transport, is intentionally <strong>out of scope</strong> for us for now. Different applications have very different requirements:</p>
+<ul>
+<li>Long running storage systems</li>
+<li>RPC-heavy microservices</li>
+<li>ML inference services</li>
+</ul>
+<p>Our goal is to provide solid building blocks (rdma-mummy-sys, sideway, trespass) that such frameworks can use.</p>
+<h4 id="where-is-async"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#where-is-async">Where is async?</a></h4>
+<p>You may wonder: <em>where is async?</em> This is Rust, after all.</p>
+<p>Our view:</p>
+<ul>
+<li>RDMA itself is asynchronous</li>
+<li>Its control path is not usually performance critical</li>
+<li>Directly integrating verbs with today’s general-purpose async runtimes (especially Tokio) is not straightforward</li>
+</ul>
+<p>We think a <strong>thread-per-core</strong> style runtime is more promising for high-performance RDMA, and sideway is designed so that such a runtime can be built on top</p>
+<ul>
+<li>Run a dedicated RDMA worker thread per core</li>
+<li>Communicate with the rest of the system via channels</li>
+<li>Keep verbs usage straightforward and predictable.</li>
+</ul>
+<p>We may explore this more in the future, but sideway itself is synchronous by design.</p>
+<h3 id="the-magic-of-dlopen"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#the-magic-of-dlopen">The magic of <code>dlopen</code></a></h3>
+<p>For some historical reasons, <code>libibverbs</code> and some of the providers uses an annoying private symbol mechanism <a href="https://github.com/linux-rdma/rdma-core/blob/master/Documentation/versioning.md">https://github.com/linux-rdma/rdma-core/blob/master/Documentation/versioning.md</a></p>
+<p>The idea is to ensure that distributed binaries link against the exact rdma-core version they were built with. While this is understandable, it makes it hard to distribute a single binary across different environments, even when you don’t actually use the private functions.</p>
+<p>To solve this, we provide a static library called <strong>rdma-core-mummy</strong> which:</p>
+<ul>
+<li>Uses <code>dlopen</code> to load <code>libibverbs</code> and <code>librdmacm</code> at runtime (these two are what you usually need in DCN)</li>
+<li>So your application only links against our static library instead of all of rdma-core.</li>
+</ul>
+<p>You might ask: <em>why not just use <code>libloading</code> in Rust?</em></p>
+<p>Because we also want other C/C++ developers to benefit from this approach.</p>
+<h3 id="lifetime-or-not-thats-a-question"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#lifetime-or-not-thats-a-question">Lifetime or not, that's a question</a></h3>
+<p>RDMA resources depend on each other</p>
+<figure>
+<p><img alt="RDMA resources dependency (from Nugine)" src="https://github.com/Nugine/rdma/raw/main/docs/ref/ref.svg" /></p>
+<figcaption>
+<p>RDMA resources dependency (from <a href="https://github.com/Nugine/rdma">Nugine</a>)</p>
+</figcaption>
+</figure>
+<p>At first glance, lifetimes seem like the natural Rust solution:</p>
+<ul>
+<li>Express resource relationships in the type system</li>
+<li>Catch misuse at compile time</li>
+</ul>
+<p>We tried that (versions before v0.4.0).</p>
+<p>When we encapsulated CQ, QP and MR in a <code>WorkerContext</code> (a common C/C++ pattern), lifetime annotations quickly turned into a pain:</p>
+<ul>
+<li>The types became complex and fragile</li>
+<li>We had to use patterns like <code>ouroboros</code> to silence the borrow checker</li>
+<li>Things that are obviously safe conceptually still made the compiler shout at us
+The moment where "safety" stops helping and starts blocking reasonable designs is the moment we decided we were going too far.</li>
+</ul>
+<p>So we chose a simpler model: <strong><code>Arc</code> for most resources</strong>.</p>
+<ul>
+<li>Users don't have to think about lifetimes</li>
+<li>Resources are still dropped in a correct order</li>
+<li>The overhead of refcounting doesn't show up on the data path
+You can see this in <code>stride</code></li>
+</ul>
+<p>Before <code>Arc</code>: <a href="https://github.com/RDMA-Rust/stride/commit/c5a6a0c83973bd187f1f4ac57a07942d8d278e23">https://github.com/RDMA-Rust/stride/commit/c5a6a0c83973bd187f1f4ac57a07942d8d278e23</a></p>
+<p>After <code>Arc</code>: <a href="https://github.com/RDMA-Rust/stride/commit/fd30aeb4b5b5fa27ee89d1877670058021d670e3">https://github.com/RDMA-Rust/stride/commit/fd30aeb4b5b5fa27ee89d1877670058021d670e3</a></p>
+<div class="grid">
+<div class="highlight"><span class="filename">Before `Arc`</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">WorkerContext</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">queue_pairs</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">GenericQueuePair</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">send_completion_queue</span><span class="p">:</span><span class="w"> </span><span class="nc">Rc</span><span class="o">&lt;</span><span class="n">RefCell</span><span class="o">&lt;</span><span class="n">ExtendedCompletionQueue</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">recv_completion_queue</span><span class="p">:</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="n">Rc</span><span class="o">&lt;</span><span class="n">RefCell</span><span class="o">&lt;</span><span class="n">ExtendedCompletionQueue</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;&gt;&gt;&gt;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="o">..</span><span class="p">.</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">After `Arc`</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">WorkerContext</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">queue_pairs</span><span class="p">:</span><span class="w"> </span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">GenericQueuePair</span><span class="o">&gt;</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">send_completion_queue</span><span class="p">:</span><span class="w"> </span><span class="nc">GenericCompletionQueue</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">recv_completion_queue</span><span class="p">:</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="n">GenericCompletionQueue</span><span class="o">&gt;</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="o">..</span><span class="p">.</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+<p>Much more readable, and closer to how RDMA is actually used in real systems.</p>
+<h3 id="rusts-unittest-framework-patches-for-upstream"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#rusts-unittest-framework-patches-for-upstream">Rust's unittest framework &amp; patches for upstream</a></h3>
+<p>To keep sideway healthy, we rely heavily on Rust’s built-in test framework:</p>
+<ul>
+<li>Unit tests that can run with or without an RDMA NIC present,</li>
+<li>CI that exercises SoftRoCE where available.
+During this process, we found <strong>two bugs in rdma-core and upstreamed fixes</strong></li>
+</ul>
+<h4 id="softroce-rxe-cq-bug"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#softroce-rxe-cq-bug">SoftRoCE (RXE) CQ bug</a></h4>
+<p>When we try to port <code>ibv_rc_pingpong</code> to sideway, it ran fine on Mellanox NICs but behaved strangely on SoftRoCE: we kept polling CQEs with <code>wr_id</code> 0.</p>
+<p>At first, we thought maybe there is something wrong with our implementation, so we tried to use <code>bpftrace</code> to catch what's happening in the kernel</p>
+<details class="note">
+<summary>bpftrace script for debugging</summary>
+<div class="highlight"><span class="filename">rxe_qp_tracer.bt</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>#include &lt;rdma/ib_verbs.h&gt;
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>struct rxe_pool_elem {
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        void            *pool;
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        void                    *obj;
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>        struct kref             ref_cnt;
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        struct list_head        list;
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        struct completion       complete;
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        u32                     index;
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>};
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>enum queue_type {
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        QUEUE_TYPE_TO_CLIENT,
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        QUEUE_TYPE_FROM_CLIENT,
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>        QUEUE_TYPE_FROM_ULP,
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>        QUEUE_TYPE_TO_ULP,
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>};
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>struct rxe_queue {
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>        void            *rxe;
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>        void    *buf;
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>        void    *ip;
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>        size_t                  buf_size;
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>        size_t                  elem_size;
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>        unsigned int            log2_elem_size;
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>        u32                     index_mask;
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>        enum queue_type         type;
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>        /* private copy of index for shared queues between
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>        * driver and clients. Driver reads and writes
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>        * this copy and then replicates to rxe_queue_buf
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>        * for read access by clients.
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>        */
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>        u32                     index;
+<a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>};
+<a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>
+<a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>struct rxe_sq {
+<a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>        int                     max_wr;
+<a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>        int                     max_sge;
+<a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>        int                     max_inline;
+<a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a>        spinlock_t              sq_lock; /* guard queue */
+<a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>        struct rxe_queue        *queue;
+<a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a>};
+<a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>
+<a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a>struct rxe_rq {
+<a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a>        int                     max_wr;
+<a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a>        int                     max_sge;
+<a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a>        spinlock_t              producer_lock; /* guard queue producer */
+<a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a>        spinlock_t              consumer_lock; /* guard queue consumer */
+<a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>        struct rxe_queue        *queue;
+<a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a>};
+<a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a>
+<a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a>struct rxe_qp {
+<a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a>        struct ib_qp ibqp;
+<a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a>        struct rxe_pool_elem elem;
+<a id="__codelineno-15-55" name="__codelineno-15-55" href="#__codelineno-15-55"></a>        struct ib_qp_attr attr;
+<a id="__codelineno-15-56" name="__codelineno-15-56" href="#__codelineno-15-56"></a>        unsigned int valid;
+<a id="__codelineno-15-57" name="__codelineno-15-57" href="#__codelineno-15-57"></a>        unsigned int            mtu;
+<a id="__codelineno-15-58" name="__codelineno-15-58" href="#__codelineno-15-58"></a>        bool                    is_user;
+<a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a>        void            *pd;
+<a id="__codelineno-15-60" name="__codelineno-15-60" href="#__codelineno-15-60"></a>        void            *srq;
+<a id="__codelineno-15-61" name="__codelineno-15-61" href="#__codelineno-15-61"></a>        void      *scq;
+<a id="__codelineno-15-62" name="__codelineno-15-62" href="#__codelineno-15-62"></a>        void            *rcq;
+<a id="__codelineno-15-63" name="__codelineno-15-63" href="#__codelineno-15-63"></a>        enum ib_sig_type        sq_sig_type;
+<a id="__codelineno-15-64" name="__codelineno-15-64" href="#__codelineno-15-64"></a>        struct rxe_sq           sq;
+<a id="__codelineno-15-65" name="__codelineno-15-65" href="#__codelineno-15-65"></a>        struct rxe_rq           rq;
+<a id="__codelineno-15-66" name="__codelineno-15-66" href="#__codelineno-15-66"></a>};
+<a id="__codelineno-15-67" name="__codelineno-15-67" href="#__codelineno-15-67"></a>
+<a id="__codelineno-15-68" name="__codelineno-15-68" href="#__codelineno-15-68"></a>kprobe:rxe_completer,kprobe:rxe_requester {
+<a id="__codelineno-15-69" name="__codelineno-15-69" href="#__codelineno-15-69"></a>  $qp = (struct rxe_qp *)arg0;
+<a id="__codelineno-15-70" name="__codelineno-15-70" href="#__codelineno-15-70"></a>        printf(&quot;%s: valid: %u, state: %u\n&quot;, func, $qp-&gt;valid, $qp-&gt;attr.qp_state);
+<a id="__codelineno-15-71" name="__codelineno-15-71" href="#__codelineno-15-71"></a>        printf(&quot;%s: max_wr: %u, max_sge: %u, index: %u\n&quot;, func, $qp-&gt;sq.max_wr, $qp-&gt;sq.max_sge, $qp-&gt;sq.queue-&gt;index);
+<a id="__codelineno-15-72" name="__codelineno-15-72" href="#__codelineno-15-72"></a>}
+<a id="__codelineno-15-73" name="__codelineno-15-73" href="#__codelineno-15-73"></a>
+<a id="__codelineno-15-74" name="__codelineno-15-74" href="#__codelineno-15-74"></a>kretprobe:rxe_completer,kretprobe:rxe_requester {
+<a id="__codelineno-15-75" name="__codelineno-15-75" href="#__codelineno-15-75"></a>        printf(&quot;%s: return: %d\n&quot;, func, retval);
+<a id="__codelineno-15-76" name="__codelineno-15-76" href="#__codelineno-15-76"></a>}
+<a id="__codelineno-15-77" name="__codelineno-15-77" href="#__codelineno-15-77"></a>
+<a id="__codelineno-15-78" name="__codelineno-15-78" href="#__codelineno-15-78"></a>kretprobe:rxe_xmit_packet {
+<a id="__codelineno-15-79" name="__codelineno-15-79" href="#__codelineno-15-79"></a>        printf(&quot;%s: return %d\n&quot;, func, retval);
+<a id="__codelineno-15-80" name="__codelineno-15-80" href="#__codelineno-15-80"></a>}
+</code></pre></div>
+</details>
+<p>With command below</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>cargo<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>rc_pingpong_split<span class="w"> </span>--<span class="w"> </span>-d<span class="w"> </span>rxe_0<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Bpftrace gave us this</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>bpftrace<span class="w"> </span>./rxe_qp_tracer.bt
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Attaching<span class="w"> </span><span class="m">5</span><span class="w"> </span>probes...
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>rxe_requester:<span class="w"> </span>valid:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>state:<span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>rxe_requester:<span class="w"> </span>max_wr:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>max_sge:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>rxe_requester:<span class="w"> </span><span class="k">return</span>:<span class="w"> </span>-11
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>rxe_completer:<span class="w"> </span>valid:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>state:<span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>rxe_completer:<span class="w"> </span>max_wr:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>max_sge:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>rxe_completer:<span class="w"> </span><span class="k">return</span>:<span class="w"> </span>-11
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>rxe_requester:<span class="w"> </span>valid:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>state:<span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>rxe_requester:<span class="w"> </span>max_wr:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>max_sge:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>rxe_xmit_packet:<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>rxe_requester:<span class="w"> </span><span class="k">return</span>:<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>...
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>rxe_completer:<span class="w"> </span>valid:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>state:<span class="w"> </span><span class="m">6</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>rxe_completer:<span class="w"> </span>max_wr:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>max_sge:<span class="w"> </span><span class="m">8</span>,<span class="w"> </span>index:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>rxe_completer:<span class="w"> </span><span class="k">return</span>:<span class="w"> </span>-11
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>^C
+</code></pre></div>
+<p>Which means the <code>rxe_completer</code> only ran finite rounds, and the kernel reported correct number of completions. So we turned to user space driver, after carefully debugging and code review, we finally found the reason and fixed it:</p>
+<p><a href="https://github.com/linux-rdma/rdma-core/pull/1512">rxe: fix completion queue consumer index overrun #1512</a></p>
+<p>Then we add it to the CI: <a href="https://github.com/RDMA-Rust/sideway/blob/5311a8e5a4bfbfd3530c085040a19009cdf927d6/.cirrus.yml#L29">E2E rc_pingpong test</a></p>
+<h4 id="device-detection-issue"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#device-detection-issue">Device detection issue</a></h4>
+<p>Another bug appeared after a reboot: one of our tests started to fail. The only difference? SoftRoCE wasn't set up yet.
+We realized that the machine still had Mellanox VFs, so the test <em>should</em> have passed. But the rdma-core's logic around devices and rdmacm didn't behave as expected.</p>
+<p>That turned into: <a href="https://github.com/linux-rdma/rdma-core/pull/1547">librdmacm: prevent NULL pointer access during device initialization</a></p>
+<p>Corresponding unit test: <a href="https://github.com/RDMA-Rust/sideway/blob/5311a8e5a4bfbfd3530c085040a19009cdf927d6/src/rdmacm/communication_manager.rs#L1013">rdmacm::communication_manager::tests::test_cm_id_reference_count</a></p>
+<h3 id="examples"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#examples">Examples</a></h3>
+<p>If you want to see what real code looks like, check out the examples:</p>
+<p><a href="https://github.com/RDMA-Rust/sideway/tree/main/examples">https://github.com/RDMA-Rust/sideway/tree/main/examples</a></p>
+<p>There are small programs for</p>
+<ul>
+<li><a href="https://github.com/RDMA-Rust/sideway/blob/main/examples/rc_pingpong.rs">Basic RC ping-pong</a></li>
+<li><a href="https://github.com/RDMA-Rust/sideway/blob/main/examples/show_gids.rs">Show GIDs</a></li>
+<li><a href="https://github.com/RDMA-Rust/sideway/blob/main/examples/ibv_devinfo.rs">Get device info</a></li>
+<li><a href="https://github.com/RDMA-Rust/sideway/blob/main/examples/cmtime.rs">Check connection setup time with RDMACM</a></li>
+</ul>
+<p>We dogfood sideway through these examples and through <code>stride</code>.</p>
+<h3 id="production-status-roadmap"><a class="toclink" href="2025/11/16/why-another-rdma-wrapper/#production-status-roadmap">Production status &amp; Roadmap</a></h3>
+<ul>
+<li>Status: <strong>v0.Y.Z</strong>, the API may still change, but the overall design is fairly stable</li>
+<li>We are trying to use sideway to build more tools (for example, stride), and adjusting the APIs as we discover better patterns</li>
+<li>We've tested our APIs on Mellanox CX-5, CX-6, BF3 mini and SoftRoCE, other RNICs haven't be tested yet.</li>
+<li>Near-term:<ul>
+<li>Provide UD, UC support</li>
+<li>Provide CQ Event support</li>
+<li>Provide Atomic FAA / CAS support</li>
+<li>Provide thread domain support</li>
+<li>Plugin system for working with direct verbs</li>
+<li>More tests, docs, and bug fixes</li>
+</ul>
+</li>
+<li>Long-term:<ul>
+<li>Complete the trespass communication library</li>
+<li>Explore a "thread-per-core" async runtime on top of sideway</li>
+</ul>
+</li>
+</ul>
+<p>Let's make Rust network fast with RDMA!</p>
+    
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
